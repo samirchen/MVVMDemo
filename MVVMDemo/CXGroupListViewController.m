@@ -6,25 +6,25 @@
 //  Copyright (c) 2014年 cx. All rights reserved.
 //
 
-#import "GroupListViewController.h"
+#import "CXGroupListViewController.h"
 #import "CXConst.h"
 #import "CXGroup+LocalDataService.h"
-#import "PersonListViewController.h"
+#import "CXPersonListViewController.h"
 
 #define SegueIDToPersonListViewController @"ToPersonListViewController"
 
-@interface GroupListViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CXGroupListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *dataTableView;
 @end
 
-@implementation GroupListViewController
+@implementation CXGroupListViewController
 
 #pragma mark - View Controller Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.model = [[GroupListViewModel alloc] init];
+    self.model = [[CXGroupListViewModel alloc] init];
     
     // Setup.
     [self setupUI];
@@ -36,10 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation
+#pragma mark - View Controller Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:SegueIDToPersonListViewController]) {
-        PersonListViewController* vc = (PersonListViewController*) segue.destinationViewController;
+        CXPersonListViewController* vc = (CXPersonListViewController*) segue.destinationViewController;
         vc.group = [self.model groupAtIndex:self.dataTableView.indexPathForSelectedRow.row];
     }
 }

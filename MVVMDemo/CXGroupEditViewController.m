@@ -1,44 +1,46 @@
 //
-//  PersonListViewController.m
+//  CXGroupEditViewController.m
 //  MVVMDemo
 //
-//  Created by XuanChen on 14-9-14.
-//  Copyright (c) 2014年 cx. All rights reserved.
+//  Created by SamirChen on 9/19/14.
+//  Copyright (c) 2014 cx. All rights reserved.
 //
 
-#import "PersonListViewController.h"
+#import "CXGroupEditViewController.h"
 #import "CXConst.h"
-#import "CXPerson+LocalDataService.h"
+#import "CXGroup+LocalDataService.h"
 
-@interface PersonListViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CXGroupEditViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *dataTableView;
-@property (strong, nonatomic) NSArray* persons;
+@property (strong, nonatomic) UITextField *groupNameTextField;
+@property (strong, nonatomic) UITextField *groupDescriptionTextField;
 @end
 
-@implementation PersonListViewController
+@implementation CXGroupEditViewController
 
 #pragma mark - View Controller Lifecycle
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     // Setup.
     [self setupUI];
-    [self loadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation
+/*
+#pragma mark - View Controller Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
+*/
 
 #pragma mark - Action
 -(void) setupUI {
@@ -56,13 +58,8 @@
     
 }
 
--(void) loadData {
-    self.persons = [CXPerson getPersonListWithGroupId:self.group.rowid];
-}
-
 #pragma mark - UITableView Delegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -72,12 +69,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.persons.count;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"GroupCell";
+    static NSString *CellIdentifier = @"GroupEditCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -86,16 +83,12 @@
     }
     
     // Configure the cell.
-    CXPerson* p = self.persons[indexPath.row];
-    cell.textLabel.text = p.personName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Gender: %d", p.gender];
+    cell.textLabel.text = @"Go";
+    //cell.textLabel.text = [self.model titleForGroupAtIndex:indexPath.row];
+    //cell.detailTextLabel.text = [self.model subtitleForGroupAtIndex:indexPath.row];
     
     
     return cell;
 }
-
-
-
-
 
 @end

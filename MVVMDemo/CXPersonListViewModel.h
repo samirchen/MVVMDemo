@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PersonListViewModel : NSObject
+@interface CXPersonListViewModel : NSObject
 
 @end

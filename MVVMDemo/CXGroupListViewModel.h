@@ -10,7 +10,7 @@
 
 @class CXGroup;
 
-@interface GroupListViewModel : NSObject
+@interface CXGroupListViewModel : NSObject
 
 @property (nonatomic, readonly) NSArray* groups;
 @property (nonatomic) NSInteger numberOfGroups;

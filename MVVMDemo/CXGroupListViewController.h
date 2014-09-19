@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GroupListViewModel.h"
+#import "CXGroupListViewModel.h"
 
-@interface GroupListViewController : UIViewController
-@property (nonatomic, strong) GroupListViewModel* model;
+@interface CXGroupListViewController : UIViewController
+@property (nonatomic, strong) CXGroupListViewModel* model;
 
 @end
 

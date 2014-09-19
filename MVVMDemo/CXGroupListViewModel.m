@@ -6,14 +6,14 @@
 //  Copyright (c) 2014年 cx. All rights reserved.
 //
 
-#import "GroupListViewModel.h"
+#import "CXGroupListViewModel.h"
 #import "CXGroup+LocalDataService.h"
 
-@interface GroupListViewModel ()
+@interface CXGroupListViewModel ()
 @property (nonatomic, strong) NSArray* groups;
 @end
 
-@implementation GroupListViewModel
+@implementation CXGroupListViewModel
 
 #pragma mark - Property
 -(NSInteger) numberOfGroups {

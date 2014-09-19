@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 cx. All rights reserved.
 //
 
-#import "PersonListViewModel.h"
+#import "CXPersonListViewModel.h"
 
-@implementation PersonListViewModel
+@implementation CXPersonListViewModel
 
 @end

@@ -9,20 +9,22 @@
 /* Begin PBXBuildFile section */
 		450E1F8519C5904B00122B16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 450E1F8419C5904B00122B16 /* main.m */; };
 		450E1F8819C5904B00122B16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 450E1F8719C5904B00122B16 /* AppDelegate.m */; };
-		450E1F8B19C5904B00122B16 /* GroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450E1F8A19C5904B00122B16 /* GroupListViewController.m */; };
+		450E1F8B19C5904B00122B16 /* CXGroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450E1F8A19C5904B00122B16 /* CXGroupListViewController.m */; };
 		450E1F8E19C5904B00122B16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450E1F8C19C5904B00122B16 /* Main.storyboard */; };
 		450E1F9019C5904B00122B16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450E1F8F19C5904B00122B16 /* Images.xcassets */; };
 		450E1F9C19C5904B00122B16 /* MVVMDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 450E1F9B19C5904B00122B16 /* MVVMDemoTests.m */; };
 		453E38C219C6DB3D00699CD7 /* CXDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38C119C6DB3D00699CD7 /* CXDBManager.m */; };
 		453E38C619C6E0B000699CD7 /* CXConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38C519C6E0B000699CD7 /* CXConfig.m */; };
 		453E38C919C6E0C400699CD7 /* CXConfig+LocalDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38C819C6E0C400699CD7 /* CXConfig+LocalDataService.m */; };
-		453E38CC19C72A4B00699CD7 /* GroupListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38CB19C72A4B00699CD7 /* GroupListViewModel.m */; };
-		453E38CF19C72A5E00699CD7 /* PersonListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38CE19C72A5E00699CD7 /* PersonListViewModel.m */; };
+		453E38CC19C72A4B00699CD7 /* CXGroupListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38CB19C72A4B00699CD7 /* CXGroupListViewModel.m */; };
+		453E38CF19C72A5E00699CD7 /* CXPersonListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38CE19C72A5E00699CD7 /* CXPersonListViewModel.m */; };
 		45B79F6819C5E35300A08E5F /* CXGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6719C5E35300A08E5F /* CXGroup.m */; };
 		45B79F6B19C5E36A00A08E5F /* CXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6A19C5E36A00A08E5F /* CXPerson.m */; };
-		45B79F6E19C5E53F00A08E5F /* PersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6D19C5E53F00A08E5F /* PersonListViewController.m */; };
+		45B79F6E19C5E53F00A08E5F /* CXPersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6D19C5E53F00A08E5F /* CXPersonListViewController.m */; };
 		45B79F7119C5F25D00A08E5F /* CXGroup+LocalDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F7019C5F25D00A08E5F /* CXGroup+LocalDataService.m */; };
 		45B79F7419C5FCE400A08E5F /* CXPerson+LocalDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F7319C5FCE400A08E5F /* CXPerson+LocalDataService.m */; };
+		DF29252819CC33760099D866 /* CXGroupEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29252719CC33760099D866 /* CXGroupEditViewController.m */; };
+		DF29252B19CC33860099D866 /* CXPersonEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29252A19CC33860099D866 /* CXPersonEditViewController.m */; };
 		EAE71471324A44EE86425E71 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB540F3695D4947B14AED31 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +44,8 @@
 		450E1F8419C5904B00122B16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		450E1F8619C5904B00122B16 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		450E1F8719C5904B00122B16 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		450E1F8919C5904B00122B16 /* GroupListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupListViewController.h; sourceTree = "<group>"; };
-		450E1F8A19C5904B00122B16 /* GroupListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupListViewController.m; sourceTree = "<group>"; };
+		450E1F8919C5904B00122B16 /* CXGroupListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXGroupListViewController.h; sourceTree = "<group>"; };
+		450E1F8A19C5904B00122B16 /* CXGroupListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXGroupListViewController.m; sourceTree = "<group>"; };
 		450E1F8D19C5904B00122B16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		450E1F8F19C5904B00122B16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		450E1F9519C5904B00122B16 /* MVVMDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,21 +59,25 @@
 		453E38C519C6E0B000699CD7 /* CXConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXConfig.m; sourceTree = "<group>"; };
 		453E38C719C6E0C400699CD7 /* CXConfig+LocalDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXConfig+LocalDataService.h"; sourceTree = "<group>"; };
 		453E38C819C6E0C400699CD7 /* CXConfig+LocalDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXConfig+LocalDataService.m"; sourceTree = "<group>"; };
-		453E38CA19C72A4B00699CD7 /* GroupListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupListViewModel.h; sourceTree = "<group>"; };
-		453E38CB19C72A4B00699CD7 /* GroupListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListViewModel.m; sourceTree = "<group>"; };
-		453E38CD19C72A5E00699CD7 /* PersonListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonListViewModel.h; sourceTree = "<group>"; };
-		453E38CE19C72A5E00699CD7 /* PersonListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonListViewModel.m; sourceTree = "<group>"; };
+		453E38CA19C72A4B00699CD7 /* CXGroupListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXGroupListViewModel.h; sourceTree = "<group>"; };
+		453E38CB19C72A4B00699CD7 /* CXGroupListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroupListViewModel.m; sourceTree = "<group>"; };
+		453E38CD19C72A5E00699CD7 /* CXPersonListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPersonListViewModel.h; sourceTree = "<group>"; };
+		453E38CE19C72A5E00699CD7 /* CXPersonListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXPersonListViewModel.m; sourceTree = "<group>"; };
 		45B79F6619C5E35300A08E5F /* CXGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXGroup.h; sourceTree = "<group>"; };
 		45B79F6719C5E35300A08E5F /* CXGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroup.m; sourceTree = "<group>"; };
 		45B79F6919C5E36A00A08E5F /* CXPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPerson.h; sourceTree = "<group>"; };
 		45B79F6A19C5E36A00A08E5F /* CXPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXPerson.m; sourceTree = "<group>"; };
-		45B79F6C19C5E53F00A08E5F /* PersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonListViewController.h; sourceTree = "<group>"; };
-		45B79F6D19C5E53F00A08E5F /* PersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonListViewController.m; sourceTree = "<group>"; };
+		45B79F6C19C5E53F00A08E5F /* CXPersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPersonListViewController.h; sourceTree = "<group>"; };
+		45B79F6D19C5E53F00A08E5F /* CXPersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXPersonListViewController.m; sourceTree = "<group>"; };
 		45B79F6F19C5F25D00A08E5F /* CXGroup+LocalDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXGroup+LocalDataService.h"; sourceTree = "<group>"; };
 		45B79F7019C5F25D00A08E5F /* CXGroup+LocalDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXGroup+LocalDataService.m"; sourceTree = "<group>"; };
 		45B79F7219C5FCE400A08E5F /* CXPerson+LocalDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXPerson+LocalDataService.h"; sourceTree = "<group>"; };
 		45B79F7319C5FCE400A08E5F /* CXPerson+LocalDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXPerson+LocalDataService.m"; sourceTree = "<group>"; };
 		5CB540F3695D4947B14AED31 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF29252619CC33760099D866 /* CXGroupEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXGroupEditViewController.h; sourceTree = "<group>"; };
+		DF29252719CC33760099D866 /* CXGroupEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroupEditViewController.m; sourceTree = "<group>"; };
+		DF29252919CC33860099D866 /* CXPersonEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPersonEditViewController.h; sourceTree = "<group>"; };
+		DF29252A19CC33860099D866 /* CXPersonEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXPersonEditViewController.m; sourceTree = "<group>"; };
 		FCF052BFAA8F491CB7F2536E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,7 +125,8 @@
 			children = (
 				450E1F8619C5904B00122B16 /* AppDelegate.h */,
 				450E1F8719C5904B00122B16 /* AppDelegate.m */,
-				453E38BE19C6D50A00699CD7 /* Utility */,
+				DF29252519CC327C0099D866 /* Utility */,
+				453E38BE19C6D50A00699CD7 /* Common */,
 				45B79F6319C5D26300A08E5F /* Model */,
 				45B79F6419C5D28F00A08E5F /* Controller */,
 				450E1F8F19C5904B00122B16 /* Images.xcassets */,
@@ -154,15 +161,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		453E38BE19C6D50A00699CD7 /* Utility */ = {
+		453E38BE19C6D50A00699CD7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				453E38C319C6DFC800699CD7 /* CXConst.h */,
 				453E38BF19C6DAE200699CD7 /* CXDBConst.h */,
 				453E38C019C6DB3D00699CD7 /* CXDBManager.h */,
 				453E38C119C6DB3D00699CD7 /* CXDBManager.m */,
 			);
-			name = Utility;
+			name = Common;
 			sourceTree = "<group>";
 		};
 		45B79F6319C5D26300A08E5F /* Model */ = {
@@ -188,16 +194,28 @@
 			isa = PBXGroup;
 			children = (
 				450E1F8C19C5904B00122B16 /* Main.storyboard */,
-				450E1F8919C5904B00122B16 /* GroupListViewController.h */,
-				450E1F8A19C5904B00122B16 /* GroupListViewController.m */,
-				453E38CA19C72A4B00699CD7 /* GroupListViewModel.h */,
-				453E38CB19C72A4B00699CD7 /* GroupListViewModel.m */,
-				45B79F6C19C5E53F00A08E5F /* PersonListViewController.h */,
-				45B79F6D19C5E53F00A08E5F /* PersonListViewController.m */,
-				453E38CD19C72A5E00699CD7 /* PersonListViewModel.h */,
-				453E38CE19C72A5E00699CD7 /* PersonListViewModel.m */,
+				453E38CA19C72A4B00699CD7 /* CXGroupListViewModel.h */,
+				453E38CB19C72A4B00699CD7 /* CXGroupListViewModel.m */,
+				450E1F8919C5904B00122B16 /* CXGroupListViewController.h */,
+				450E1F8A19C5904B00122B16 /* CXGroupListViewController.m */,
+				DF29252619CC33760099D866 /* CXGroupEditViewController.h */,
+				DF29252719CC33760099D866 /* CXGroupEditViewController.m */,
+				453E38CD19C72A5E00699CD7 /* CXPersonListViewModel.h */,
+				453E38CE19C72A5E00699CD7 /* CXPersonListViewModel.m */,
+				45B79F6C19C5E53F00A08E5F /* CXPersonListViewController.h */,
+				45B79F6D19C5E53F00A08E5F /* CXPersonListViewController.m */,
+				DF29252919CC33860099D866 /* CXPersonEditViewController.h */,
+				DF29252A19CC33860099D866 /* CXPersonEditViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		DF29252519CC327C0099D866 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				453E38C319C6DFC800699CD7 /* CXConst.h */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		F684C7F53DEF4C0491994778 /* Frameworks */ = {
@@ -254,6 +272,7 @@
 		450E1F7719C5904B00122B16 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CX;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = cx;
 				TargetAttributes = {
@@ -344,16 +363,18 @@
 			files = (
 				45B79F6819C5E35300A08E5F /* CXGroup.m in Sources */,
 				45B79F7419C5FCE400A08E5F /* CXPerson+LocalDataService.m in Sources */,
+				DF29252B19CC33860099D866 /* CXPersonEditViewController.m in Sources */,
 				453E38C619C6E0B000699CD7 /* CXConfig.m in Sources */,
 				453E38C919C6E0C400699CD7 /* CXConfig+LocalDataService.m in Sources */,
 				45B79F7119C5F25D00A08E5F /* CXGroup+LocalDataService.m in Sources */,
-				45B79F6E19C5E53F00A08E5F /* PersonListViewController.m in Sources */,
+				45B79F6E19C5E53F00A08E5F /* CXPersonListViewController.m in Sources */,
 				45B79F6B19C5E36A00A08E5F /* CXPerson.m in Sources */,
-				450E1F8B19C5904B00122B16 /* GroupListViewController.m in Sources */,
-				453E38CC19C72A4B00699CD7 /* GroupListViewModel.m in Sources */,
+				450E1F8B19C5904B00122B16 /* CXGroupListViewController.m in Sources */,
+				453E38CC19C72A4B00699CD7 /* CXGroupListViewModel.m in Sources */,
 				450E1F8819C5904B00122B16 /* AppDelegate.m in Sources */,
 				450E1F8519C5904B00122B16 /* main.m in Sources */,
-				453E38CF19C72A5E00699CD7 /* PersonListViewModel.m in Sources */,
+				DF29252819CC33760099D866 /* CXGroupEditViewController.m in Sources */,
+				453E38CF19C72A5E00699CD7 /* CXPersonListViewModel.m in Sources */,
 				453E38C219C6DB3D00699CD7 /* CXDBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

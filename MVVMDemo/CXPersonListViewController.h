@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CXGroup+LocalDataService.h"
 
-@interface PersonListViewController : UIViewController
+@interface CXPersonListViewController : UIViewController
 @property (nonatomic, strong) CXGroup* group;
 @end
