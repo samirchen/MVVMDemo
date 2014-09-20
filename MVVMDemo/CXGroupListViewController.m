@@ -24,11 +24,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.model = [[CXGroupListViewModel alloc] init];
-    
     // Setup.
     [self setupUI];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.model = [[CXGroupListViewModel alloc] init];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +45,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:SegueIDToPersonListViewController]) {
         CXPersonListViewController* vc = (CXPersonListViewController*) segue.destinationViewController;
-        vc.group = [self.model groupAtIndex:self.dataTableView.indexPathForSelectedRow.row];
+        vc.model = [[CXPersonListViewModel alloc] initWithGroup:[self.model groupAtIndex:self.dataTableView.indexPathForSelectedRow.row]];
     }
 }
 

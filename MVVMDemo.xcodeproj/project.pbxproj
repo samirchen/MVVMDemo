@@ -18,11 +18,14 @@
 		453E38C919C6E0C400699CD7 /* CXConfig+LocalDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38C819C6E0C400699CD7 /* CXConfig+LocalDataService.m */; };
 		453E38CC19C72A4B00699CD7 /* CXGroupListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38CB19C72A4B00699CD7 /* CXGroupListViewModel.m */; };
 		453E38CF19C72A5E00699CD7 /* CXPersonListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 453E38CE19C72A5E00699CD7 /* CXPersonListViewModel.m */; };
+		4541A82719CDBACE004A925A /* CXGroupEditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541A82619CDBACE004A925A /* CXGroupEditViewModel.m */; };
+		4541A82A19CDBAEE004A925A /* CXPersonEditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4541A82919CDBAEE004A925A /* CXPersonEditViewModel.m */; };
 		45B79F6819C5E35300A08E5F /* CXGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6719C5E35300A08E5F /* CXGroup.m */; };
 		45B79F6B19C5E36A00A08E5F /* CXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6A19C5E36A00A08E5F /* CXPerson.m */; };
 		45B79F6E19C5E53F00A08E5F /* CXPersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F6D19C5E53F00A08E5F /* CXPersonListViewController.m */; };
 		45B79F7119C5F25D00A08E5F /* CXGroup+LocalDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F7019C5F25D00A08E5F /* CXGroup+LocalDataService.m */; };
 		45B79F7419C5FCE400A08E5F /* CXPerson+LocalDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B79F7319C5FCE400A08E5F /* CXPerson+LocalDataService.m */; };
+		45ECB15A19CD6DB7000E13BD /* CXCommonUICreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 45ECB15919CD6DB7000E13BD /* CXCommonUICreator.m */; };
 		DF29252819CC33760099D866 /* CXGroupEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29252719CC33760099D866 /* CXGroupEditViewController.m */; };
 		DF29252B19CC33860099D866 /* CXPersonEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29252A19CC33860099D866 /* CXPersonEditViewController.m */; };
 		EAE71471324A44EE86425E71 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB540F3695D4947B14AED31 /* libPods.a */; };
@@ -63,6 +66,10 @@
 		453E38CB19C72A4B00699CD7 /* CXGroupListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroupListViewModel.m; sourceTree = "<group>"; };
 		453E38CD19C72A5E00699CD7 /* CXPersonListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPersonListViewModel.h; sourceTree = "<group>"; };
 		453E38CE19C72A5E00699CD7 /* CXPersonListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXPersonListViewModel.m; sourceTree = "<group>"; };
+		4541A82519CDBACE004A925A /* CXGroupEditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXGroupEditViewModel.h; sourceTree = "<group>"; };
+		4541A82619CDBACE004A925A /* CXGroupEditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroupEditViewModel.m; sourceTree = "<group>"; };
+		4541A82819CDBAEE004A925A /* CXPersonEditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPersonEditViewModel.h; sourceTree = "<group>"; };
+		4541A82919CDBAEE004A925A /* CXPersonEditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXPersonEditViewModel.m; sourceTree = "<group>"; };
 		45B79F6619C5E35300A08E5F /* CXGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXGroup.h; sourceTree = "<group>"; };
 		45B79F6719C5E35300A08E5F /* CXGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroup.m; sourceTree = "<group>"; };
 		45B79F6919C5E36A00A08E5F /* CXPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXPerson.h; sourceTree = "<group>"; };
@@ -73,6 +80,8 @@
 		45B79F7019C5F25D00A08E5F /* CXGroup+LocalDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXGroup+LocalDataService.m"; sourceTree = "<group>"; };
 		45B79F7219C5FCE400A08E5F /* CXPerson+LocalDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXPerson+LocalDataService.h"; sourceTree = "<group>"; };
 		45B79F7319C5FCE400A08E5F /* CXPerson+LocalDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXPerson+LocalDataService.m"; sourceTree = "<group>"; };
+		45ECB15819CD6DB7000E13BD /* CXCommonUICreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXCommonUICreator.h; sourceTree = "<group>"; };
+		45ECB15919CD6DB7000E13BD /* CXCommonUICreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXCommonUICreator.m; sourceTree = "<group>"; };
 		5CB540F3695D4947B14AED31 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29252619CC33760099D866 /* CXGroupEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXGroupEditViewController.h; sourceTree = "<group>"; };
 		DF29252719CC33760099D866 /* CXGroupEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXGroupEditViewController.m; sourceTree = "<group>"; };
@@ -198,12 +207,16 @@
 				453E38CB19C72A4B00699CD7 /* CXGroupListViewModel.m */,
 				450E1F8919C5904B00122B16 /* CXGroupListViewController.h */,
 				450E1F8A19C5904B00122B16 /* CXGroupListViewController.m */,
+				4541A82519CDBACE004A925A /* CXGroupEditViewModel.h */,
+				4541A82619CDBACE004A925A /* CXGroupEditViewModel.m */,
 				DF29252619CC33760099D866 /* CXGroupEditViewController.h */,
 				DF29252719CC33760099D866 /* CXGroupEditViewController.m */,
 				453E38CD19C72A5E00699CD7 /* CXPersonListViewModel.h */,
 				453E38CE19C72A5E00699CD7 /* CXPersonListViewModel.m */,
 				45B79F6C19C5E53F00A08E5F /* CXPersonListViewController.h */,
 				45B79F6D19C5E53F00A08E5F /* CXPersonListViewController.m */,
+				4541A82819CDBAEE004A925A /* CXPersonEditViewModel.h */,
+				4541A82919CDBAEE004A925A /* CXPersonEditViewModel.m */,
 				DF29252919CC33860099D866 /* CXPersonEditViewController.h */,
 				DF29252A19CC33860099D866 /* CXPersonEditViewController.m */,
 			);
@@ -214,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				453E38C319C6DFC800699CD7 /* CXConst.h */,
+				45ECB15819CD6DB7000E13BD /* CXCommonUICreator.h */,
+				45ECB15919CD6DB7000E13BD /* CXCommonUICreator.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -361,11 +376,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45ECB15A19CD6DB7000E13BD /* CXCommonUICreator.m in Sources */,
 				45B79F6819C5E35300A08E5F /* CXGroup.m in Sources */,
 				45B79F7419C5FCE400A08E5F /* CXPerson+LocalDataService.m in Sources */,
 				DF29252B19CC33860099D866 /* CXPersonEditViewController.m in Sources */,
 				453E38C619C6E0B000699CD7 /* CXConfig.m in Sources */,
 				453E38C919C6E0C400699CD7 /* CXConfig+LocalDataService.m in Sources */,
+				4541A82A19CDBAEE004A925A /* CXPersonEditViewModel.m in Sources */,
 				45B79F7119C5F25D00A08E5F /* CXGroup+LocalDataService.m in Sources */,
 				45B79F6E19C5E53F00A08E5F /* CXPersonListViewController.m in Sources */,
 				45B79F6B19C5E36A00A08E5F /* CXPerson.m in Sources */,
@@ -375,6 +392,7 @@
 				450E1F8519C5904B00122B16 /* main.m in Sources */,
 				DF29252819CC33760099D866 /* CXGroupEditViewController.m in Sources */,
 				453E38CF19C72A5E00699CD7 /* CXPersonListViewModel.m in Sources */,
+				4541A82719CDBACE004A925A /* CXGroupEditViewModel.m in Sources */,
 				453E38C219C6DB3D00699CD7 /* CXDBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

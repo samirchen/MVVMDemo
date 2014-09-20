@@ -12,7 +12,6 @@
 
 @interface CXPersonListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *dataTableView;
-@property (strong, nonatomic) NSArray* persons;
 @end
 
 @implementation CXPersonListViewController
@@ -25,8 +24,8 @@
     
     // Setup.
     [self setupUI];
-    [self loadData];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -56,9 +55,6 @@
     
 }
 
--(void) loadData {
-    self.persons = [CXPerson getPersonListWithGroupId:self.group.rowid];
-}
 
 #pragma mark - UITableView Delegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,7 +68,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.persons.count;
+    return self.model.numberOfPersons;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,9 +82,8 @@
     }
     
     // Configure the cell.
-    CXPerson* p = self.persons[indexPath.row];
-    cell.textLabel.text = p.personName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Gender: %d", p.gender];
+    cell.textLabel.text = [self.model titleForPersonAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [self.model subtitleForPersonAtIndex:indexPath.row];
     
     
     return cell;

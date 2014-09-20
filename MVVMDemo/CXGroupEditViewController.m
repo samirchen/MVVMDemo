@@ -9,11 +9,20 @@
 #import "CXGroupEditViewController.h"
 #import "CXConst.h"
 #import "CXGroup+LocalDataService.h"
+#import "CXCommonUICreator.h"
+#import <ReactiveCocoa.h>
 
-@interface CXGroupEditViewController () <UITableViewDataSource, UITableViewDelegate>
+typedef NS_ENUM(NSInteger, GroupEditRowType) {
+    GroupEditRowTypeGroupName = 0,
+    GroupEditRowTypeGroupDescription,
+    GroupEditRowTypeCount
+};
+
+@interface CXGroupEditViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) UITableView *dataTableView;
 @property (strong, nonatomic) UITextField *groupNameTextField;
 @property (strong, nonatomic) UITextField *groupDescriptionTextField;
+@property (strong, nonatomic) UIButton* submitButton;
 @end
 
 @implementation CXGroupEditViewController
@@ -25,6 +34,15 @@
     
     // Setup.
     [self setupUI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // Dismiss keyboard.
+    [self.groupNameTextField resignFirstResponder];
+    [self.groupDescriptionTextField resignFirstResponder];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +60,11 @@
 }
 */
 
+#pragma mark - View Controller Navigation
+-(void) back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Action
 -(void) setupUI {
     
@@ -50,12 +73,36 @@
     }
     
     // Table view.
-    self.dataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-20-44) style:UITableViewStylePlain];
+    self.dataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-20-44) style:UITableViewStyleGrouped];
     self.dataTableView.delegate = self;
     self.dataTableView.dataSource = self;
     [self.view addSubview:self.dataTableView];
     
+    // Footer view.
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    self.submitButton = [CXCommonUICreator buttonWithFrame:CGRectMake(20, 0, ScreenWidth-20*2, 40) bgColor:[UIColor redColor] bgTouchColor:[UIColor grayColor] bgDisableColor:[UIColor colorWithWhite:0.5 alpha:0.5] title:@"Submit" titleColor:[UIColor whiteColor] titleTouchColor:[UIColor whiteColor] target:self andAction:@selector(submit:)];
+    [footerView addSubview:self.submitButton];
+    self.dataTableView.tableFooterView = footerView;
     
+    // Cell text fields.
+    self.groupNameTextField = [CXCommonUICreator textFieldWithRoundedRectBorderWithFrame:CGRectMake(0, 0, 230, 30) placeholder:@"Group Name" keyboardType:UIKeyboardTypeEmailAddress returnKeyType:UIReturnKeyNext];
+    self.groupNameTextField.delegate = self;
+    
+    self.groupDescriptionTextField = [CXCommonUICreator textFieldWithRoundedRectBorderWithFrame:CGRectMake(0, 0, 230, 30) placeholder:@"Group Description" keyboardType:UIKeyboardTypeEmailAddress returnKeyType:UIReturnKeyNext];
+    self.groupDescriptionTextField.delegate = self;
+    
+    // Bind self.submitButton.enabled to the text fields' string value.
+    RAC(self.submitButton, enabled) = [RACSignal combineLatest:@[self.groupNameTextField.rac_textSignal, self.groupDescriptionTextField.rac_textSignal] reduce:^id(NSString *name, NSString *desc) {
+        return @(![[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] && ![[desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]);
+    }];
+    
+}
+
+-(void) submit:(id)sender {
+    CXGroup* newGroup = [[CXGroup alloc] initWithName:self.groupNameTextField.text description:self.groupDescriptionTextField.text];
+    [CXGroup addGroup:newGroup];
+    
+    [self back:nil];
 }
 
 #pragma mark - UITableView Delegate
@@ -69,7 +116,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return GroupEditRowTypeCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,13 +129,45 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
+    
     // Configure the cell.
-    cell.textLabel.text = @"Go";
-    //cell.textLabel.text = [self.model titleForGroupAtIndex:indexPath.row];
-    //cell.detailTextLabel.text = [self.model subtitleForGroupAtIndex:indexPath.row];
+    switch (indexPath.row) {
+        case GroupEditRowTypeGroupName:
+        {
+            cell.accessoryView = self.groupNameTextField;
+            [cell.textLabel setText:@"Name"];
+            break;
+        }
+            
+            
+        case GroupEditRowTypeGroupDescription:
+        {
+            cell.accessoryView = self.groupDescriptionTextField;
+            [cell.textLabel setText:@"Desc"];
+            break;
+        }
+            
+        default:
+            break;
+    }
     
     
     return cell;
+}
+
+
+#pragma mark - UITextField Delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.groupNameTextField) {
+        [self.groupNameTextField resignFirstResponder];
+        [self.groupDescriptionTextField becomeFirstResponder];
+    }
+    else if (textField == self.groupDescriptionTextField) {
+        [self.groupDescriptionTextField resignFirstResponder];
+        [self submit:nil];
+    }
+    
+    return YES;
 }
 
 @end
