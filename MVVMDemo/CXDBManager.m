@@ -118,7 +118,7 @@ typedef NS_ENUM(int32_t, DBVersion) {
 -(DBVersion) getDBVersion {
     DBVersion v = DBVersion0;
     
-    CXConfig* config = [CXConfig getConfigWithKey:ConfigKeyDBVersion];
+    CXConfig* config = [CXConfig getConfigWithKey:kConfigKeyDBVersion];
     if (config) {
         v = (int32_t)config.value.intValue;
     }
@@ -140,7 +140,7 @@ typedef NS_ENUM(int32_t, DBVersion) {
     }];
     
     // Set DB version.
-    CXConfig* dbVersionConfig = [[CXConfig alloc] initWithConfigKey:ConfigKeyDBVersion value:[NSString stringWithFormat:@"%d", DBVersion1]];
+    CXConfig* dbVersionConfig = [[CXConfig alloc] initWithConfigKey:kConfigKeyDBVersion value:[NSString stringWithFormat:@"%d", DBVersion1]];
     [CXConfig addConfig:dbVersionConfig];
     
     // Test Data.
@@ -153,10 +153,38 @@ typedef NS_ENUM(int32_t, DBVersion) {
         }
     }
     
+    
+    
 }
 
 
 -(void) updateToDBV2 {
+    
+    // Test: Run in background to update data.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (true) {
+            if (arc4random() % 2) {
+                int i = arc4random() % 100;
+                CXGroup* g = [[CXGroup alloc] initWithName:[NSString stringWithFormat:@"Group-%d", i] description:[NSString stringWithFormat:@"Hi, I am Group-%d", i]];
+                BOOL r = [CXGroup addGroup:g];
+                if (r) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationGroupDataUpdated object:nil];
+                }
+            }
+            else {
+                NSArray* gs = [CXGroup getGroupList];
+                if (gs.count > 0) {
+                    int x = arc4random() % gs.count;
+                    BOOL r = [CXGroup removeGroup:gs[x]];
+                    if (r) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationGroupDataUpdated object:nil];
+                    }
+                }
+            }
+                        
+            [NSThread sleepForTimeInterval:5];
+        }
+    });
     
 }
 

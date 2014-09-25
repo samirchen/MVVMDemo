@@ -10,6 +10,8 @@
 #import "CXConst.h"
 #import "CXGroup+LocalDataService.h"
 #import "CXPersonListViewController.h"
+#import <ReactiveCocoa.h>
+#import "CXDBConst.h"
 
 #define SegueIDToPersonListViewController @"ToPersonListViewController"
 
@@ -33,6 +35,22 @@
     [super viewWillAppear:animated];
     
     self.model = [[CXGroupListViewModel alloc] init];
+    
+    /*
+    // Test.
+    [[self.model rac_signalForSelector:@selector(subtitleForGroupAtIndex:)] subscribeNext:^(id x) {
+        NSLog(@"Get title.");
+    }];
+    */
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kNotificationGroupDataUpdated object:nil] subscribeNext:^(NSNotification *notification) {
+        self.model = nil;
+        self.model = [[CXGroupListViewModel alloc] init];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dataTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        });
+    }];
+
 
 }
 

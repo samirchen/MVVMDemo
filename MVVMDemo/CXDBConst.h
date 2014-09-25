@@ -36,7 +36,15 @@
 #define ENConfig_Key @"key"
 #define ENConfig_Value @"value"
 
+
+#pragma mark - DB Related Notification Name
+//// DB data updated notification.
+#define kNotificationGroupDataUpdated @"group_updated"
+#define kNotificationPersonDataUpdated @"person_updated"
+
+
+#pragma mark - DB Config Key
 //// Config Key of config in en_config.
-#define ConfigKeyDBVersion @"db_version"
+#define kConfigKeyDBVersion @"db_version"
 
 #endif
