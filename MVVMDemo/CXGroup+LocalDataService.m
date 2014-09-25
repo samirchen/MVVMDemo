@@ -32,11 +32,13 @@
     __block NSMutableArray* objs = [[NSMutableArray alloc] init];
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         FMResultSet* rs = [db executeQuery:sql];
         while ([rs next]) {
             [objs addObject:[CXGroup getObjectFromResultSet:rs]];
         }
         [rs close];
+        [db close];
     }];
     
     return [objs copy];
@@ -48,11 +50,13 @@
     __block CXGroup* obj = nil;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         FMResultSet* rs = [db executeQuery:sql, [NSNumber numberWithInt:gid]];
         if ([rs next]) {
             obj = [CXGroup getObjectFromResultSet:rs];
         }
         [rs close];
+        [db close];
     }];
     
     return obj;
@@ -65,9 +69,11 @@
     __block int32_t result = -1;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         if ([db executeUpdate:sql, g.groupName, g.groupDescription]) {
             result = (int32_t) [db lastInsertRowId];
         }
+        [db close];
     }];
     
     return result;
@@ -79,7 +85,9 @@
     __block BOOL result = NO;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         result = [db executeUpdate:sql, g.groupName, g.groupDescription, [NSNumber numberWithInt:g.rowid]];
+        [db close];
     }];
     
     return result;
@@ -91,7 +99,9 @@
     __block BOOL result = NO;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         result = [db executeUpdate:sql, [NSNumber numberWithInt:g.rowid]];
+        [db close];
     }];
     
     return result;

@@ -182,7 +182,7 @@ typedef NS_ENUM(int32_t, DBVersion) {
                 }
             }
                         
-            [NSThread sleepForTimeInterval:5];
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
