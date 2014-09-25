@@ -12,8 +12,10 @@
 #import "CXPersonListViewController.h"
 #import <ReactiveCocoa.h>
 #import "CXDBConst.h"
+#import "CXGroupEditViewController.h"
+#import "CXGroupEditViewModel.h"
 
-#define SegueIDToPersonListViewController @"ToPersonListViewController"
+#define SegueIDToGroupEditViewController @"ToGroupEditViewController"
 
 @interface CXGroupListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *dataTableView;
@@ -29,19 +31,12 @@
     // Setup.
     [self setupUI];
     
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.model = [[CXGroupListViewModel alloc] init];
-    
     /*
-    // Test.
-    [[self.model rac_signalForSelector:@selector(subtitleForGroupAtIndex:)] subscribeNext:^(id x) {
-        NSLog(@"Get title.");
-    }];
-    */
+     // Test.
+     [[self.model rac_signalForSelector:@selector(subtitleForGroupAtIndex:)] subscribeNext:^(id x) {
+     NSLog(@"Get title.");
+     }];
+     */
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kNotificationGroupDataUpdated object:nil] subscribeNext:^(NSNotification *notification) {
         self.model = nil;
@@ -50,7 +45,13 @@
             [self.dataTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
+    
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.model = [[CXGroupListViewModel alloc] init];
 
 }
 
@@ -61,13 +62,18 @@
 
 #pragma mark - View Controller Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:SegueIDToPersonListViewController]) {
-        CXPersonListViewController* vc = (CXPersonListViewController*) segue.destinationViewController;
-        vc.model = [[CXPersonListViewModel alloc] initWithGroup:[self.model groupAtIndex:self.dataTableView.indexPathForSelectedRow.row]];
+    if ([segue.identifier isEqualToString:SegueIDToGroupEditViewController]) {
+        if ([sender isKindOfClass:[UITableView class]]) {
+            CXGroupEditViewController* vc = (CXGroupEditViewController*) segue.destinationViewController;
+            vc.model = [[CXGroupEditViewModel alloc] initWithGroup:[self.model groupAtIndex:self.dataTableView.indexPathForSelectedRow.row]];
+        }
+        else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+
+        }
     }
 }
 
-#pragma mark - Action
+#pragma mark - Setup
 -(void) setupUI {
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -83,11 +89,16 @@
     
 }
 
+#pragma mark - User Action
+- (IBAction)addGroupList:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:SegueIDToGroupEditViewController sender:sender];
+}
+
 
 
 #pragma mark - UITableView Delegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:SegueIDToPersonListViewController sender:tableView];
+    [self performSegueWithIdentifier:SegueIDToGroupEditViewController sender:tableView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

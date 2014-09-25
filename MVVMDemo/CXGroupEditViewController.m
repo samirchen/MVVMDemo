@@ -11,6 +11,7 @@
 #import "CXGroup+LocalDataService.h"
 #import "CXCommonUICreator.h"
 #import <ReactiveCocoa.h>
+#import "CXGroupEditViewModel.h"
 
 typedef NS_ENUM(NSInteger, GroupEditRowType) {
     GroupEditRowTypeGroupName = 0,
@@ -65,7 +66,7 @@ typedef NS_ENUM(NSInteger, GroupEditRowType) {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - Action
+#pragma mark - Setup
 -(void) setupUI {
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -96,11 +97,21 @@ typedef NS_ENUM(NSInteger, GroupEditRowType) {
         return @(![[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] && ![[desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]);
     }];
     
+    self.groupNameTextField.text = self.model.nameString;
+    self.groupDescriptionTextField.text = self.model.descriptionString;
+    
 }
 
 -(void) submit:(id)sender {
-    CXGroup* newGroup = [[CXGroup alloc] initWithName:self.groupNameTextField.text description:self.groupDescriptionTextField.text];
-    [CXGroup addGroup:newGroup];
+    if (self.model.group) {
+        self.model.group.groupName = self.groupNameTextField.text;
+        self.model.group.groupDescription = self.groupDescriptionTextField.text;
+        [CXGroup updateGroup:self.model.group];
+    }
+    else {
+        CXGroup* newGroup = [[CXGroup alloc] initWithName:self.groupNameTextField.text description:self.groupDescriptionTextField.text];
+        [CXGroup addGroup:newGroup];
+    }
     
     [self back:nil];
 }

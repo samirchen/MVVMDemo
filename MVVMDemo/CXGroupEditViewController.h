@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CXGroupEditViewModel;
 
 @interface CXGroupEditViewController : UIViewController
-
+@property (nonatomic, strong) CXGroupEditViewModel* model;
 @end
