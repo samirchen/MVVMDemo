@@ -33,13 +33,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation
+#pragma mark - View Controller Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 
-#pragma mark - Action
+#pragma mark - Setup
 -(void) setupUI {
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -73,7 +73,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"GroupCell";
+    static NSString *CellIdentifier = @"PersonCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

@@ -26,7 +26,9 @@
     self = [super init];
     if (self) {
         self.group = g;
-        self.persons = [CXPerson getPersonListWithGroupId:g.rowid];
+        if (g) {
+            self.persons = [CXPerson getPersonListWithGroupId:g.rowid];
+        }
     }
     
     return self;

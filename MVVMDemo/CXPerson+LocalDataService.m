@@ -34,11 +34,13 @@
     __block NSMutableArray* objs = [[NSMutableArray alloc] init];
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         FMResultSet* rs = [db executeQuery:sql, [NSNumber numberWithInt:groupId]];
         while ([rs next]) {
             [objs addObject:[CXPerson getObjectFromResultSet:rs]];
         }
         [rs close];
+        [db close];
     }];
     
     return [objs copy];
@@ -50,9 +52,11 @@
     __block int32_t result = -1;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         if ([db executeUpdate:sql, p.personName, [NSNumber numberWithInt:p.gender], [NSNumber numberWithInt:p.groupId]]) {
             result = (int32_t) [db lastInsertRowId];
         }
+        [db close];
     }];
     
     return result;
@@ -64,7 +68,9 @@
     __block BOOL result = NO;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         result = [db executeUpdate:sql, p.personName, [NSNumber numberWithInt:p.gender], [NSNumber numberWithInt:p.groupId], [NSNumber numberWithInt:p.rowid]];
+        [db close];
     }];
     
     return result;
@@ -76,10 +82,28 @@
     __block BOOL result = NO;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         result = [db executeUpdate:sql, [NSNumber numberWithInt:p.rowid]];
+        [db close];
     }];
     
     return result;
 }
+
++(BOOL) removePersonOfGroup:(int32_t)groupId {
+    NSString* dbFilePath = [CXDBManager sharedInstance].dbFilePath;
+    NSString* sql = [NSString stringWithFormat:@"Delete From %@ Where %@=?", ENPerson, ENPerson_GroupID];
+    __block BOOL result = NO;
+    FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
+    [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
+        result = [db executeUpdate:sql, [NSNumber numberWithInt:groupId]];
+        [db close];
+    }];
+
+    return result;
+
+}
+
 
 @end

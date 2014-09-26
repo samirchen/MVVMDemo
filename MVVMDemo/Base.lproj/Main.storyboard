@@ -58,25 +58,6 @@
             </objects>
             <point key="canvasLocation" x="1286" y="315"/>
         </scene>
-        <!--Person Edit-->
-        <scene sceneID="iOB-JY-U0m">
-            <objects>
-                <viewController id="wjv-Fo-eLg" customClass="CXPersonEditViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1Qm-RA-lFx"/>
-                        <viewControllerLayoutGuide type="bottom" id="gy0-AO-JVN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Y9U-J2-1fW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Person Edit" id="GEr-XF-xTM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J9f-eg-1uC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1308" y="936"/>
-        </scene>
         <!--Person List-->
         <scene sceneID="9Oq-w4-xCq">
             <objects>
@@ -90,13 +71,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Person List" id="1Qr-Rh-u8q">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CcK-NU-gPx">
-                            <connections>
-                                <segue destination="wjv-Fo-eLg" kind="push" id="XgP-RJ-4F3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Person List" id="1Qr-Rh-u8q"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPN-Qk-6Tc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

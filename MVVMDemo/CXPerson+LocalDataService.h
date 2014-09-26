@@ -15,6 +15,6 @@
 +(int32_t) addPerson:(CXPerson*)p;
 +(BOOL) updatePerson:(CXPerson*)p;
 +(BOOL) removePerson:(CXPerson*)p;
-
++(BOOL) removePersonOfGroup:(int32_t)groupId;
 
 @end

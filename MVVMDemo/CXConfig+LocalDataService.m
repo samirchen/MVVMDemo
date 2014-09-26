@@ -32,11 +32,13 @@
     __block CXConfig* obj = nil;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         FMResultSet* rs = [db executeQuery:sql, key];
         if ([rs next]) {
             obj = [CXConfig getObjectFromResultSet:rs];
         }
         [rs close];
+        [db close];
     }];
     
     return obj;
@@ -48,9 +50,11 @@
     __block int32_t result = -1;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         if ([db executeUpdate:sql, c.key, c.value]) {
             result = (int32_t) [db lastInsertRowId];
         }
+        [db close];
     }];
     
     return result;
@@ -62,7 +66,9 @@
     __block BOOL result = NO;
     FMDatabaseQueue *dbQ = [FMDatabaseQueue databaseQueueWithPath:dbFilePath];
     [dbQ inDatabase:^(FMDatabase *db) {
+        [db open];
         result = [db executeUpdate:sql, c.value, c.key];
+        [db close];
     }];
     
     return result;

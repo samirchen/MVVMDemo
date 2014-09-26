@@ -12,6 +12,9 @@
 #import "CXCommonUICreator.h"
 #import <ReactiveCocoa.h>
 #import "CXGroupEditViewModel.h"
+#import "CXPersonListViewController.h"
+
+#define SegueIDToPersonListViewController @"ToPersonListViewController"
 
 typedef NS_ENUM(NSInteger, GroupEditRowType) {
     GroupEditRowTypeGroupName = 0,
@@ -66,6 +69,13 @@ typedef NS_ENUM(NSInteger, GroupEditRowType) {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:SegueIDToPersonListViewController]) {
+        CXPersonListViewController* vc = (CXPersonListViewController*) segue.destinationViewController;
+        vc.model = [[CXPersonListViewModel alloc] initWithGroup:self.model.group];
+    }
+}
+
 #pragma mark - Setup
 -(void) setupUI {
     
@@ -92,16 +102,21 @@ typedef NS_ENUM(NSInteger, GroupEditRowType) {
     self.groupDescriptionTextField = [CXCommonUICreator textFieldWithRoundedRectBorderWithFrame:CGRectMake(0, 0, 230, 30) placeholder:@"Group Description" keyboardType:UIKeyboardTypeEmailAddress returnKeyType:UIReturnKeyNext];
     self.groupDescriptionTextField.delegate = self;
     
-    // Bind self.submitButton.enabled to the text fields' string value.
-    RAC(self.submitButton, enabled) = [RACSignal combineLatest:@[self.groupNameTextField.rac_textSignal, self.groupDescriptionTextField.rac_textSignal] reduce:^id(NSString *name, NSString *desc) {
-        return @(![[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] && ![[desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]);
-    }];
+    if (!self.model.group) { // When add new group.
+        // Bind self.submitButton.enabled to the text fields' string value.
+        RAC(self.submitButton, enabled) = [RACSignal combineLatest:@[self.groupNameTextField.rac_textSignal, self.groupDescriptionTextField.rac_textSignal] reduce:^id(NSString *name, NSString *desc) {
+            return @(![[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""] && ![[desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]);
+        }];
+    }
+    
     
     self.groupNameTextField.text = self.model.nameString;
     self.groupDescriptionTextField.text = self.model.descriptionString;
     
 }
 
+
+#pragma mark - User Action
 -(void) submit:(id)sender {
     if (self.model.group) {
         self.model.group.groupName = self.groupNameTextField.text;

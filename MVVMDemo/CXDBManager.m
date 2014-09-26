@@ -51,6 +51,9 @@ typedef NS_ENUM(int32_t, DBVersion) {
 
 #pragma mark - CXDBManager
 -(void) initDB {
+    // Test.
+    [self removeDB];
+    
     DBVersion dbVersion = DBVersion0;
     if (![self isDBFileExist]) { // DB is not exist
         BOOL copyDBOK = [self copyDBFileFromMainBundle]; // Copy from main bundle.
@@ -83,6 +86,19 @@ typedef NS_ENUM(int32_t, DBVersion) {
 -(BOOL) createDB {
     if ([FMDatabase databaseWithPath:self.dbFilePath] != nil) {
         return YES;
+    }
+    
+    return NO;
+}
+
+-(BOOL) removeDB {
+    if ([FMDatabase databaseWithPath:self.dbFilePath] != nil) {
+        NSError* error;
+        BOOL r = [[NSFileManager defaultManager] removeItemAtPath:self.dbFilePath error:&error];
+        if (error) {
+            debugLog(@"%@", error);
+        }
+        return r;
     }
     
     return NO;
@@ -164,25 +180,50 @@ typedef NS_ENUM(int32_t, DBVersion) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         while (true) {
             if (arc4random() % 2) {
+                // Add group.
                 int i = arc4random() % 100;
                 CXGroup* g = [[CXGroup alloc] initWithName:[NSString stringWithFormat:@"Group-%d", i] description:[NSString stringWithFormat:@"Hi, I am Group-%d", i]];
-                BOOL r = [CXGroup addGroup:g];
-                if (r) {
+                g.rowid = [CXGroup addGroup:g];
+                if (g.rowid > 0) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationGroupDataUpdated object:nil];
+                    
+                    // Add persons to this group.
+                    for (int i = 0; i < 5; i++) {
+                        CXPerson* p = [[CXPerson alloc] initWithName:[NSString stringWithFormat:@"Person-%d-%d", g.rowid, i] gender:i%2 groupId:g.rowid];
+                        p.rowid = [CXPerson addPerson:p];
+                        
+                        if (p.rowid > 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPersonDataUpdated object:nil];
+
+                        }
+
+                    }
                 }
+                
+                
             }
             else {
                 NSArray* gs = [CXGroup getGroupList];
                 if (gs.count > 0) {
                     int x = arc4random() % gs.count;
-                    BOOL r = [CXGroup removeGroup:gs[x]];
+                    
+                    // Remove persons of the group with rowid x.
+                    BOOL r = [CXPerson removePersonOfGroup:x];
                     if (r) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationGroupDataUpdated object:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationPersonDataUpdated object:nil];
+                        
+                        // Remove group with rowid x.
+                        r = [CXGroup removeGroup:gs[x]];
+                        if (r) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationGroupDataUpdated object:nil];
+                        }
                     }
+                    
+                    
                 }
             }
                         
-            [NSThread sleepForTimeInterval:1];
+            [NSThread sleepForTimeInterval:3];
         }
     });
     
