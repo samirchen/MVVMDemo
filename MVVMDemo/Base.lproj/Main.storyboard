@@ -1,104 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="NWB-xF-8ji">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--Group List-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CXGroupListViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CXMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Group List" id="uHe-3U-vbq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZJ1-bs-hnm">
-                            <connections>
-                                <action selector="addGroupList:" destination="BYZ-38-t0r" id="SJn-0f-2kD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="LVP-FG-qeY" kind="push" identifier="ToGroupEditViewController" id="lMI-nj-6HZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898" y="304"/>
-        </scene>
-        <!--Group Edit-->
-        <scene sceneID="sxk-ml-9Tw">
-            <objects>
-                <viewController id="LVP-FG-qeY" customClass="CXGroupEditViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QjX-tV-Vfp"/>
-                        <viewControllerLayoutGuide type="bottom" id="9jn-Zq-yBO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zTV-xr-l8z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Group Edit" id="Rrv-bB-Pbc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="weK-bt-ili">
-                            <connections>
-                                <segue destination="L9G-G7-pVZ" kind="push" identifier="ToPersonListViewController" id="Xo8-av-VBh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HpJ-kN-4QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1286" y="315"/>
-        </scene>
-        <!--Person List-->
-        <scene sceneID="9Oq-w4-xCq">
-            <objects>
-                <viewController id="L9G-G7-pVZ" customClass="CXPersonListViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UPX-QL-dGW"/>
-                        <viewControllerLayoutGuide type="bottom" id="jF0-Ve-8eR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tx0-3W-KJ4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Person List" id="1Qr-Rh-u8q"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MPN-Qk-6Tc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="903" y="941"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8SW-ce-2am">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NWB-xF-8ji" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iDN-It-fXD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ju1-pL-K16"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yzA-72-z8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="302" y="848"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
 </document>

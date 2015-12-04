@@ -2,8 +2,8 @@
 //  MVVMDemoTests.m
 //  MVVMDemoTests
 //
-//  Created by XuanChen on 14-9-14.
-//  Copyright (c) 2014年 cx. All rights reserved.
+//  Created by qiufu on 12/4/15.
+//  Copyright © 2015 CX. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
@@ -26,7 +26,7 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
 
 - (void)testPerformanceExample {

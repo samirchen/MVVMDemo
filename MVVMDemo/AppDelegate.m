@@ -2,28 +2,26 @@
 //  AppDelegate.m
 //  MVVMDemo
 //
-//  Created by XuanChen on 14-9-14.
-//  Copyright (c) 2014年 cx. All rights reserved.
+//  Created by qiufu on 12/4/15.
+//  Copyright © 2015 CX. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import <IQKeyboardManager.h>
-#import "CXDBManager.h"
+#import "CXMainViewController.h"
 
 @interface AppDelegate ()
-            
 
 @end
 
 @implementation AppDelegate
-            
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    [self initKeyboardManager];
-    
-    [[CXDBManager sharedInstance] initDB];
+    CXMainViewController *mainViewController = [[CXMainViewController alloc] init];
+    UINavigationController *mainNavigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    self.window.rootViewController = mainNavigationController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -48,24 +46,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-#pragma mark - Action
--(void) initKeyboardManager {
-    // Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
-    [[IQKeyboardManager sharedManager] setEnable:YES];
-    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:10];
-	// Enabling autoToolbar behaviour. If It is set to NO. You have to manually create UIToolbar for keyboard.
-	[[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
-	// Setting toolbar behavious to IQAutoToolbarBySubviews. Set it to IQAutoToolbarByTag to manage previous/next according to UITextField's tag property in increasing order.
-	[[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarBySubviews];
-    // Resign textField if touched outside of UITextField/UITextView.
-    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
-    // Giving permission to modify TextView's frame
-    [[IQKeyboardManager sharedManager] setCanAdjustTextView:YES];
-    // Should show text field place holder.
-    [[IQKeyboardManager sharedManager] setShouldShowTextFieldPlaceholder:NO];
-    
 }
 
 @end

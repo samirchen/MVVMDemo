@@ -2,8 +2,8 @@
 //  main.m
 //  MVVMDemo
 //
-//  Created by XuanChen on 14-9-14.
-//  Copyright (c) 2014年 cx. All rights reserved.
+//  Created by qiufu on 12/4/15.
+//  Copyright © 2015 CX. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
