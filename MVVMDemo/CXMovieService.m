@@ -23,6 +23,7 @@
         NSMutableArray *movies = [[NSMutableArray alloc] init];
         for (int32_t i = 0; i < (arc4random() % 20 + 1); i++) {
             CXMovie *m = [[CXMovie alloc] init];
+            m.rowid = (int64_t) i;
             m.posterImageURL = @"http://img.sc115.com/uploads/sc/jpgs/07/pic5093_sc115.com.jpg";
             m.name = [CXCommonUtil randomStringWithLength:10];
             m.releaseTime = [NSDate dateWithTimeIntervalSince1970:(arc4random() % 10000000)];

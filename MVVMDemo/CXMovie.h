@@ -10,6 +10,7 @@
 
 @interface CXMovie : NSObject
 
+@property (nonatomic, assign) int64_t rowid;
 @property (nonatomic, strong) NSString *posterImageURL;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSDate *releaseTime;
