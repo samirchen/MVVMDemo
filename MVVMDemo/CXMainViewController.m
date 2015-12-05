@@ -7,8 +7,11 @@
 //
 
 #import "CXMainViewController.h"
+#import <Masonry/Masonry.h>
+#import "CXMovieTableViewCell.h"
+#import "CXMovieService.h"
 
-NSString *const CellIdentifier = @"CellIdentifier";
+NSString *const CXMovieCellIdentifier = @"CXMovieCellIdentifier";
 
 @interface CXMainViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myTableView;
@@ -19,8 +22,10 @@ NSString *const CellIdentifier = @"CellIdentifier";
 #pragma mark - Property
 - (UITableView *)myTableView {
     if (!_myTableView) {
-        _myTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-        [_myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+        _myTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        [_myTableView registerClass:[CXMovieTableViewCell class] forCellReuseIdentifier:CXMovieCellIdentifier];
+        [_myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
         
@@ -31,29 +36,84 @@ NSString *const CellIdentifier = @"CellIdentifier";
 
 
 #pragma mark - Lifecycle
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.viewModel = [[CXMainViewModel alloc] init];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    // Load data.
+    [self loadData];
+    
+    // Setup ui.
     [self setupUI];
 }
 
 
 #pragma mark - Setup
+- (void)loadData {
+    
+    // Refresh data.
+    [self refresh:nil];
+    
+}
+
 - (void)setupUI {
     // Use full screen layout.
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.extendedLayoutIncludesOpaqueBars = YES;
     
-    // Set navigation title.
-    self.navigationItem.title = @"MVVM Demo";
+    // Navigation title.
+    self.navigationItem.title = [self.viewModel navigationTitleText];
     
-    
+    // Navigation item.
+    UIBarButtonItem *billListBarButtom = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
+    self.navigationItem.rightBarButtonItem = billListBarButtom;
+
     
     // Setup myTableView.
     [self.view addSubview:self.myTableView];
+    [self.myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    // Subcribe data updated signal to bind view model and view.
+    @weakify(self);
+    [self.viewModel.dataUpdatedSignal subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Next");
+        NSLog(@"%@", x);
+        if ([x isEqualToString:@"movieList"]) {
+            [self.myTableView reloadData];
+        }
+        else if ([x isEqualToString:@"categoryTitle"]) {
+            self.navigationItem.title = [self.viewModel navigationTitleText];
+        }
+        else if ([x isEqualToString:@"all"]) {
+            [self.myTableView reloadData];
+            self.navigationItem.title = [self.viewModel navigationTitleText];
+        }
+    }];
+    [self.viewModel.errorSignal subscribeNext:^(id x) {
+        NSLog(@"Error");
+    }];
+
     
+
+}
+
+
+#pragma mark - Action
+- (void)refresh:(id)sender {
+    // Send refresh data action.
+    [self.viewModel refreshViewDataWithParameters:@{@"para1":@"value1", @"para2":@"value2"}];
 }
 
 
@@ -64,7 +124,7 @@ NSString *const CellIdentifier = @"CellIdentifier";
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
+    return [CXMovieTableViewCell heightForModel:nil atIndexPath:indexPath];
 }
 
 
@@ -73,18 +133,15 @@ NSString *const CellIdentifier = @"CellIdentifier";
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"";
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return [self.viewModel movieCellCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    CXMovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CXMovieCellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = @"Hi";
+    CXMovieCellViewModel *cellViewModel = [self.viewModel movieCellViewModelAtIndexPath:indexPath];
+    cell.viewModel = cellViewModel;
     
     return cell;
 }

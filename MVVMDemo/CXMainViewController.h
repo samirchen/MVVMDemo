@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CXMainViewModel.h"
 
 @interface CXMainViewController : UIViewController
 
+@property (nonatomic, strong) CXMainViewModel *viewModel;
 
 @end
 

@@ -2,7 +2,7 @@ MVVMDemo
 ===================
 
 ## MVVMDemo
-MVVMDemo is a demo use Model-View-ViewModel. Not complete, Coding...
+MVVMDemo is a demo use Model-View-ViewModel.
 
 ## Build
 If necessary, update to the latest version of CocoaPods.
