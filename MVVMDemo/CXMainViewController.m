@@ -20,6 +20,14 @@ NSString *const CXMovieCellIdentifier = @"CXMovieCellIdentifier";
 @implementation CXMainViewController
 
 #pragma mark - Property
+- (CXMainViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [[CXMainViewModel alloc] init];
+    }
+    
+    return _viewModel;
+}
+
 - (UITableView *)myTableView {
     if (!_myTableView) {
         _myTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -36,15 +44,6 @@ NSString *const CXMovieCellIdentifier = @"CXMovieCellIdentifier";
 
 
 #pragma mark - Lifecycle
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.viewModel = [[CXMainViewModel alloc] init];
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -90,16 +89,18 @@ NSString *const CXMovieCellIdentifier = @"CXMovieCellIdentifier";
         @strongify(self);
         NSLog(@"Next");
         NSLog(@"%@", x);
-        if ([x isEqualToString:@"movieList"]) {
-            [self.myTableView reloadData];
-        }
-        else if ([x isEqualToString:@"categoryTitle"]) {
-            self.navigationItem.title = [self.viewModel navigationTitleText];
-        }
-        else if ([x isEqualToString:@"all"]) {
-            [self.myTableView reloadData];
-            self.navigationItem.title = [self.viewModel navigationTitleText];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([x isEqualToString:@"movieList"]) {
+                [self.myTableView reloadData];
+            }
+            else if ([x isEqualToString:@"categoryTitle"]) {
+                self.navigationItem.title = [self.viewModel navigationTitleText];
+            }
+            else if ([x isEqualToString:@"all"]) {
+                [self.myTableView reloadData];
+                self.navigationItem.title = [self.viewModel navigationTitleText];
+            }
+        });
     }];
     [self.viewModel.errorSignal subscribeNext:^(id x) {
         NSLog(@"Error");
